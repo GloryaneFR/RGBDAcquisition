@@ -70,7 +70,7 @@ add_executable(
               )
 
 if (MSVC)
-    target_link_libraries(BVHTester)
+    target_link_libraries(BVHTester ../../../../../../pthreads4w/PTHREADS-BUILT/x86_64/Debug/lib/pthread)
 else()
     target_link_libraries(BVHTester rt m pthread)
 endif (MSVC)
