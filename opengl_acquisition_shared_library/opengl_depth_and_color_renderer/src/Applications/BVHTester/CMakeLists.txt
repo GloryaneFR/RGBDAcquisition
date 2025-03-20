@@ -70,7 +70,7 @@ add_executable(
               )
 
 if (MSVC)
-    target_link_libraries(BVHTester msvcrt)
+    target_link_libraries(BVHTester pthread)
 else()
     target_link_libraries(BVHTester rt m pthread)
 endif (MSVC)
