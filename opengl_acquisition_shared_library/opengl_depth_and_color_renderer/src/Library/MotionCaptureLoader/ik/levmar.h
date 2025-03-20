@@ -26,6 +26,8 @@ vEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
 *OTHER DEALINGS IN THE SOFTWARE.
 */
 
+#include <vector>
+
 #ifndef LEVMAR_H_INCLUDED
 #define LEVMAR_H_INCLUDED
 
@@ -66,6 +68,7 @@ struct LMstat
 * @return 0=Success/1=Failure
 */
 void levmar_solveAXBUsingCholesky(int n, double l[n][n], double x[n], double b[n]);
+
 
 
 /**
