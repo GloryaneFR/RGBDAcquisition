@@ -31,6 +31,11 @@ IF( ENABLE_SHADERS )
  add_definitions(-DUSE_GLEW)
 ENDIF( ENABLE_SHADERS )
 
+
+# Include and link directories for pthread (in ./libs folder)
+include_directories("../../../../../../pthreads4w/PTHREADS-BUILT/x86_64/Debug/include")
+link_directories("../../../../../../pthreads4w/PTHREADS-BUILT/x86_64/Debug/lib")
+
 add_executable( 
                BVHTester 
                main.c 
@@ -70,7 +75,7 @@ add_executable(
               )
 
 if (MSVC)
-    target_link_libraries(BVHTester ../../../../../../pthreads4w/PTHREADS-BUILT/x86_64/Debug/lib/pthread)
+    target_link_libraries(BVHTester pthread)
 else()
     target_link_libraries(BVHTester rt m pthread)
 endif (MSVC)
