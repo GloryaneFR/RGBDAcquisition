@@ -70,9 +70,9 @@ add_executable(
               )
 
 if (MSVC)
-    target_link_libraries(BVHTester msvcrt pthread )
+    target_link_libraries(BVHTester msvcrt)
 else()
-    target_link_libraries(BVHTester rt m pthread )
+    target_link_libraries(BVHTester rt m pthread)
 endif (MSVC)
  
 set_target_properties(BVHTester PROPERTIES 
