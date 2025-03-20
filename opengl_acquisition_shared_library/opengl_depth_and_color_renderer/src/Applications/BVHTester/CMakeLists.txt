@@ -38,7 +38,8 @@ link_directories("../../../../../../pthreads4w/PTHREADS-BUILT/x86_64/Debug/lib")
 
 add_executable( 
                BVHTester 
-               main.c 
+               main.c
+              ../../Library/WinGetFile/winGetLine.c
               ../../Library/MotionCaptureLoader/bvh_loader.c
               ../../Library/MotionCaptureLoader/calculate/bvh_transform.c 
               ../../Library/MotionCaptureLoader/calculate/bvh_project.c 
