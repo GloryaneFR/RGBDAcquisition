@@ -68,9 +68,12 @@ add_executable(
               ../../../../../tools/AmMatrix/quaternions.c
               ../../../../../tools/AmMatrix/simpleRenderer.c
               )
- 
-target_link_libraries(BVHTester rt m pthread )   
-       
+
+if (MSVC)
+    target_link_libraries(BVHTester msvcrt pthread )
+else()
+    target_link_libraries(BVHTester rt m pthread )
+endif (MSVC)
  
 set_target_properties(BVHTester PROPERTIES 
                        ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}"
