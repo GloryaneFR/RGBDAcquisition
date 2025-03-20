@@ -18,6 +18,8 @@ extern "C"
 #include <string.h>
 #include <errno.h>
 
+#define ssize_t ptrdiff_t
+
 #define C_TEXTFILETOMEMORY_VERSION 0.01
 
 

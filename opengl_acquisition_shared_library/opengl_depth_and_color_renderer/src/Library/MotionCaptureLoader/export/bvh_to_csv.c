@@ -11,6 +11,9 @@
 #include "../edit/bvh_remapangles.h"
 #include "../edit/bvh_cut_paste.h"
 
+#define ssize_t ptrdiff_t
+#define block_size 1024
+
 #define DUMP_SEPERATED_POS_ROT 0
 #define DUMP_3D_POSITIONS 0
 
@@ -397,7 +400,7 @@ int dumpBVHToCSVBody(
 
 
 
-unsigned int countLinesInFile(const char *filename, size_t block_size)
+unsigned int countLinesInFile(const char *filename)
 {
     char buffer[block_size];
     unsigned int lineCount = 0;
@@ -433,7 +436,7 @@ int bvh_ImportCSVPoses(
                       )
 {
  int result = 0;
- int lineCount = countLinesInFile(filenameOfCSVFile,1024);
+ int lineCount = countLinesInFile(filenameOfCSVFile);
  fprintf(stderr,"File %s has %u lines \n",filenameOfCSVFile,lineCount);
   //-----------------------------------------------------------
   struct InputParserC * csvLine = InputParser_Create(1024,4);

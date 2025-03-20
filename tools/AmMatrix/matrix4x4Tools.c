@@ -1,4 +1,4 @@
-
+#define _USE_MATH_DEFINES
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -13,6 +13,12 @@
 #if INTEL_OPTIMIZATIONS
 #include <xmmintrin.h>
 #include <pmmintrin.h>
+#endif
+
+#if defined ( _MSC_VER )
+#define PURE_ALIGN_16  __declspec(align(16))
+#elif defined( __GNUC__ )
+#define  PURE_ALIGN_16 __attribute__((aligned(16))) 
 #endif
 
 int codeHasSSE()
@@ -57,7 +63,7 @@ enum mat4x4EItem
     12  13  14  15
 */
 
-const float __attribute__((aligned(16))) identityMatrix4x4[16]={1.0,0.0,0.0,0.0,
+const float PURE_ALIGN_16 identityMatrix4x4[16]={1.0,0.0,0.0,0.0,
                                                                 0.0,1.0,0.0,0.0,
                                                                 0.0,0.0,1.0,0.0,
                                                                 0.0,0.0,0.0,1.0};

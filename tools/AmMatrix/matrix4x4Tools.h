@@ -12,6 +12,12 @@ extern "C"
 {
 #endif
 
+#if defined ( _MSC_VER )
+#define PURE_ALIGN_16  __declspec(align(16))
+#elif defined( __GNUC__ )
+#define  PURE_ALIGN_16 __attribute__((aligned(16))) 
+#endif
+
 int codeHasSSE();
 
 //This should be ROTATION_ORDER_NAMESA but it isn't to avoid bugs
@@ -64,7 +70,7 @@ struct Matrix4x4OfFloats
      I31     , I32 , I33 , I34 ,
      I41     , I42 , I43 , I44
     */
-  float __attribute__((aligned(16))) m[16];
+  float PURE_ALIGN_16 m[16];
 };
 
 
@@ -78,7 +84,7 @@ struct Vector4x1OfFloats
      IRC => Item Row/Column =>
      I11, I12, I13, I14
     */
-  float __attribute__((aligned(16))) m[4];
+  float PURE_ALIGN_16 m[4];
 };
 
 

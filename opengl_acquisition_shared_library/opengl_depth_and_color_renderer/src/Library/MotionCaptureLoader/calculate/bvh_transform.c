@@ -20,6 +20,7 @@
 #define CYAN    "\033[36m"      /* Cyan */
 #define WHITE   "\033[37m"      /* White */
 
+#if defined ( __GNUC__ )
 float max(float a,float b)
 {
   if (a>b) {return a;}
@@ -31,6 +32,7 @@ float min(float a,float b)
   if (a<b) {return a;}
   return b;
 }
+#endif
 
 struct Vector3D
 {
