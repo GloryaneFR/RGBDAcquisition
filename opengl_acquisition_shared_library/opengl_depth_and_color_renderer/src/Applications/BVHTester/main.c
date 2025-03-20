@@ -41,6 +41,8 @@
 #include  "../../../../../tools/AmMatrix/matrixOpenGL.h"
 
 
+#define ssize_t ptrdiff_t
+
 #define NORMAL   "\033[0m"
 #define BLACK   "\033[30m"      /* Black */
 #define RED     "\033[31m"      /* Red */

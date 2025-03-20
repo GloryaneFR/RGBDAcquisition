@@ -12,13 +12,13 @@
 #include <string.h>
 #include <math.h>
 
+
+
 #include <assert.h> //assert support for debugging
 #include <time.h>
 #include <sys/types.h>
-#include <sys/time.h>
-#include <unistd.h>
-
-#include <time.h>
+//#include <sys/time.h>
+//#include <unistd.h>
 
 #include "hardcodedProblems_inverseKinematics.h"
 #include "bvh_inverseKinematics.h"
@@ -72,7 +72,7 @@ char fileExistsIK(const char * filename)
 unsigned long GetTickCountMicrosecondsIK()
 {
     struct timespec ts;
-    if ( clock_gettime(CLOCK_MONOTONIC,&ts) != 0)
+    if (timespec_get(&ts, TIME_UTC) != 0)
     {
         return 0;
     }
