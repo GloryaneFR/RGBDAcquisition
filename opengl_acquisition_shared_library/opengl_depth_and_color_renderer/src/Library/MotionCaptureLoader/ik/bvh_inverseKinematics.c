@@ -22,7 +22,7 @@
 
 #include "hardcodedProblems_inverseKinematics.h"
 #include "bvh_inverseKinematics.h"
-#include "levmar.h"
+//#include "levmar.h"
 
 #include "../edit/bvh_remapangles.h"
 #include "../export/bvh_to_svg.h"
