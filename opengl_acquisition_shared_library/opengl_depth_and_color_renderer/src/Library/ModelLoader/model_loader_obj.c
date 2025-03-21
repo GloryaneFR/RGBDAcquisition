@@ -1,9 +1,17 @@
+#if defined ( _MSC_VER )
+#include <Windows.h>
+#include <GL/gl.h>
+#endif
+
 #include "model_loader_obj.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+
+
+
 #include "../TextureLoader/texture_loader.h"
 
 #include "../Tools/tools.h"

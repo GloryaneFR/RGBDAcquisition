@@ -1,12 +1,19 @@
+#if defined ( _MSC_VER )
+#include <windows.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
+#elif defined( __GNUC__ )
+#include <GL/glx.h>    /* this includes the necessary X headers */
+#include <GL/gl.h>
+#include <GL/glu.h>
 
 #include <X11/X.h>    /* X11 constant (e.g. TrueColor) */
 #include <X11/keysym.h>
+#endif
 
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <GL/glx.h>    /* this includes the necessary X headers */
-#include <GL/gl.h>
 
 #include "../Scene/scene.h"
 #include "glx2.h"

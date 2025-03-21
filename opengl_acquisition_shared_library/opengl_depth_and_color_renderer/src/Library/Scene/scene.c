@@ -1,10 +1,18 @@
+#if defined ( _MSC_VER )
+#include <Windows.h>
 #include <GL/gl.h>
-#include <GL/glx.h>    /* this includes the necessary X headers */
 #include <GL/glu.h>
+#elif defined( __GNUC__ )
+#include <GL/gl.h>
+#include <GL/glu.h>
+#include <GL/glx.h>    /* this includes the necessary X headers */
+#include <unistd.h>
+#endif
+
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
+
 
 #include <time.h>
 #include <math.h>

@@ -3,12 +3,18 @@
  *  @author Ammar Qammaz (AmmarkoV)
  */
 
+#if defined ( _MSC_VER )
+#include <Windows.h>
+#include <GL/gl.h>
+#elif defined( __GNUC__ )
+#include <GL/gl.h>
+#include <GL/glx.h>    /* this includes the necessary X headers */
+#endif
 
 #ifndef MODEL_LOADER_OBJ_H_INCLUDED
 #define MODEL_LOADER_OBJ_H_INCLUDED
 
-#include <GL/gl.h>
-#include <GL/glx.h>    /* this includes the necessary X headers */
+
 
 #include "model_loader.h"
 
