@@ -79,6 +79,12 @@ add_executable(
 
 if (MSVC)
     target_link_libraries(BVHTester pthread)
+    # copy the .dll file to the same folder as the executable
+    add_custom_command(
+        TARGET BVHTester POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../../../../../pthreads4w/PTHREADS-BUILT/x86_64/Debug/bin"
+        $<TARGET_FILE_DIR:BVHTester>)
 else()
     target_link_libraries(BVHTester rt m pthread)
 endif (MSVC)
