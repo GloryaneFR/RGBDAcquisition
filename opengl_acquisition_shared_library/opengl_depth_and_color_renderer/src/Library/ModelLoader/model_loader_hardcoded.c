@@ -1,4 +1,5 @@
 
+#define _USE_MATH_DEFINES
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -6,8 +7,13 @@
 
 #include <math.h>
 
+#if defined ( _MSC_VER )
+#include <Windows.h>
+#include <GL/gl.h>
+#elif defined( __GNUC__ )
 #include <GL/gl.h>
 #include <GL/glx.h>    /* this includes the necessary X headers */
+#endif
 
 #include "model_loader.h"
 #include "model_loader_hardcoded.h"

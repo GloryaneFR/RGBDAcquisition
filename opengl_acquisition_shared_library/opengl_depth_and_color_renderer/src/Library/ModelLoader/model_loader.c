@@ -6,8 +6,13 @@
 
 #include <math.h>
 
+#if defined ( _MSC_VER )
+#include <Windows.h>
+#include <GL/gl.h>
+#elif defined( __GNUC__ )
 #include <GL/gl.h>
 #include <GL/glx.h>    /* this includes the necessary X headers */
+#endif
 
 //For now only using the fixed pipeline renderer..
 #include "../Rendering/FixedPipeline/ogl_fixed_pipeline_renderer.h"
