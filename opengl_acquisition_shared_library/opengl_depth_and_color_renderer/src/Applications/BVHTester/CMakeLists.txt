@@ -39,40 +39,42 @@ link_directories("../../../../../../pthreads4w/PTHREADS-BUILT/x86_64/Debug/lib")
 add_executable( 
                BVHTester 
                main.c
-              ../../Library/WinGetFile/winGetLine.c
-              ../../Library/MotionCaptureLoader/bvh_loader.c
-              ../../Library/MotionCaptureLoader/calculate/bvh_transform.c 
-              ../../Library/MotionCaptureLoader/calculate/bvh_project.c 
-              ../../Library/MotionCaptureLoader/calculate/bvh_to_tri_pose.c
-              ../../Library/MotionCaptureLoader/calculate/smoothing.h
-              ../../Library/MotionCaptureLoader/calculate/smoothing.c
-              ../../Library/MotionCaptureLoader/import/fromBVH.c
-              ../../Library/MotionCaptureLoader/export/bvh_export.c
-              ../../Library/MotionCaptureLoader/export/bvh_to_c.c
-              ../../Library/MotionCaptureLoader/export/bvh_to_bvh.c
-              ../../Library/MotionCaptureLoader/export/bvh_to_svg.c
-              ../../Library/MotionCaptureLoader/export/bvh_to_csv.c
-              ../../Library/MotionCaptureLoader/export/bvh_to_json.c
-              ../../Library/MotionCaptureLoader/export/bvh_to_trajectoryParserTRI.c
-              ../../Library/MotionCaptureLoader/export/bvh_to_trajectoryParserPrimitives.c
-              ../../Library/MotionCaptureLoader/edit/bvh_randomize.c 
-              ../../Library/MotionCaptureLoader/edit/bvh_rename.c 
-              ../../Library/MotionCaptureLoader/edit/bvh_remapangles.c 
-              ../../Library/MotionCaptureLoader/edit/bvh_interpolate.c 
-              ../../Library/MotionCaptureLoader/edit/bvh_merge.c 
-              ../../Library/MotionCaptureLoader/edit/bvh_filter.c 
-              ../../Library/MotionCaptureLoader/edit/bvh_cut_paste.c 
-              ../../Library/MotionCaptureLoader/ik/bvh_inverseKinematics.c 
-              ../../Library/MotionCaptureLoader/ik/hardcodedProblems_inverseKinematics.c
-              #../../Library/MotionCaptureLoader/ik/levmar.c
-              ../../Library/MotionCaptureLoader/metrics/bvh_measure.c
-              ../../Library/MotionCaptureLoader/tests/test.c
-              ../../Library/TrajectoryParser/InputParser_C.c
-              ../../../../../tools/AmMatrix/matrix4x4Tools.c
-              ../../../../../tools/AmMatrix/matrixMultiplicationOptimization.c
-              ../../../../../tools/AmMatrix/matrixOpenGL.c
-              ../../../../../tools/AmMatrix/quaternions.c
-              ../../../../../tools/AmMatrix/simpleRenderer.c
+               $<$<PLATFORM_ID:Windows>: #https://stackoverflow.com/questions/67404662/how-to-make-cmakelists-txt-to-include-some-c-and-h-files-only-for-one-os
+                    ../../Library/WinGetFile/winUtils.c
+               >
+               ../../Library/MotionCaptureLoader/bvh_loader.c
+               ../../Library/MotionCaptureLoader/calculate/bvh_transform.c 
+               ../../Library/MotionCaptureLoader/calculate/bvh_project.c 
+               ../../Library/MotionCaptureLoader/calculate/bvh_to_tri_pose.c
+               ../../Library/MotionCaptureLoader/calculate/smoothing.h
+               ../../Library/MotionCaptureLoader/calculate/smoothing.c
+               ../../Library/MotionCaptureLoader/import/fromBVH.c
+               ../../Library/MotionCaptureLoader/export/bvh_export.c
+               ../../Library/MotionCaptureLoader/export/bvh_to_c.c
+               ../../Library/MotionCaptureLoader/export/bvh_to_bvh.c
+               ../../Library/MotionCaptureLoader/export/bvh_to_svg.c
+               ../../Library/MotionCaptureLoader/export/bvh_to_csv.c
+               ../../Library/MotionCaptureLoader/export/bvh_to_json.c
+               ../../Library/MotionCaptureLoader/export/bvh_to_trajectoryParserTRI.c
+               ../../Library/MotionCaptureLoader/export/bvh_to_trajectoryParserPrimitives.c
+               ../../Library/MotionCaptureLoader/edit/bvh_randomize.c 
+               ../../Library/MotionCaptureLoader/edit/bvh_rename.c 
+               ../../Library/MotionCaptureLoader/edit/bvh_remapangles.c 
+               ../../Library/MotionCaptureLoader/edit/bvh_interpolate.c 
+               ../../Library/MotionCaptureLoader/edit/bvh_merge.c 
+               ../../Library/MotionCaptureLoader/edit/bvh_filter.c 
+               ../../Library/MotionCaptureLoader/edit/bvh_cut_paste.c 
+               ../../Library/MotionCaptureLoader/ik/bvh_inverseKinematics.c 
+               ../../Library/MotionCaptureLoader/ik/hardcodedProblems_inverseKinematics.c
+               #../../Library/MotionCaptureLoader/ik/levmar.c
+               ../../Library/MotionCaptureLoader/metrics/bvh_measure.c
+               ../../Library/MotionCaptureLoader/tests/test.c
+               ../../Library/TrajectoryParser/InputParser_C.c
+               ../../../../../tools/AmMatrix/matrix4x4Tools.c
+               ../../../../../tools/AmMatrix/matrixMultiplicationOptimization.c
+               ../../../../../tools/AmMatrix/matrixOpenGL.c
+               ../../../../../tools/AmMatrix/quaternions.c
+               ../../../../../tools/AmMatrix/simpleRenderer.c
               )
 
 if (MSVC)

@@ -17,8 +17,6 @@
 #include <assert.h> //assert support for debugging
 #include <time.h>
 #include <sys/types.h>
-//#include <sys/time.h>
-//#include <unistd.h>
 
 #include "hardcodedProblems_inverseKinematics.h"
 #include "bvh_inverseKinematics.h"
@@ -29,6 +27,17 @@
 #include "../edit/bvh_cut_paste.h"
 
 #include "../../../../../../tools/PThreadWorkerPool/pthreadWorkerPool.h"
+
+
+#if defined ( _MSC_VER )
+#include<windows.h>
+#include<io.h>
+#define ftruncate _chsize_s
+#define sleep Sleep
+#elif defined( __GNUC__ )
+#include <sys/time.h>
+#include <unistd.h>
+#endif
 
 // --------------------------------------------
 #include <errno.h>

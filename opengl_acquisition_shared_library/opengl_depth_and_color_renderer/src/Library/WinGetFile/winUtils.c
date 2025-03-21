@@ -2,7 +2,32 @@
 #include <stdlib.h>
 
 #if defined ( _MSC_VER )
-size_t getline(char **lineptr, size_t *n, FILE *stream)
+#include <windows.h>    /* WinAPI */
+
+/* Windows sleep in 100ns units */
+int nanoSleep(LONGLONG ns) //https://stackoverflow.com/questions/13397571/precise-thread-sleep-needed-max-1ms-error/41862592#41862592
+{
+    /* Declarations */
+    HANDLE timer;   /* Timer handle */
+    LARGE_INTEGER li;   /* Time defintion */
+    /* Create timer */
+    if (!(timer = CreateWaitableTimer(NULL, TRUE, NULL)))
+        return FALSE;
+    /* Set timer properties */
+    li.QuadPart = -ns;
+    if (!SetWaitableTimer(timer, &li, 0, NULL, NULL, FALSE)) {
+        CloseHandle(timer);
+        return FALSE;
+    }
+    /* Start & wait for timer */
+    WaitForSingleObject(timer, INFINITE);
+    /* Clean resources */
+    CloseHandle(timer);
+    /* Slept without problems */
+    return 1;
+}
+
+size_t getline(char **lineptr, size_t *n, FILE *stream) //https://stackoverflow.com/questions/735126/are-there-alternate-implementations-of-gnu-getline-interface/735472#735472
     {
         char *bufptr = NULL;
         char *p = bufptr;
