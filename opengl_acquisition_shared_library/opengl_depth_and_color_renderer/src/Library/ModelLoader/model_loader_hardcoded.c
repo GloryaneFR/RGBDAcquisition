@@ -7,10 +7,10 @@
 
 #include <math.h>
 
-#if defined ( _MSC_VER )
+#if defined ( _WIN32 )
 #include <Windows.h>
 #include <GL/gl.h>
-#elif defined( __GNUC__ )
+#else
 #include <GL/gl.h>
 #include <GL/glx.h>    /* this includes the necessary X headers */
 #endif

@@ -18,7 +18,9 @@ extern "C"
 #include <string.h>
 #include <errno.h>
 
+#if defined (_WIN32)
 #define ssize_t ptrdiff_t
+#endif
 
 #define C_TEXTFILETOMEMORY_VERSION 0.01
 

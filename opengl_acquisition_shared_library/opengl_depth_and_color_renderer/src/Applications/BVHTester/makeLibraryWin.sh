@@ -1,25 +1,33 @@
 #!/bin/bash
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-Set-Location "$DIR"
+cd "$DIR"
 
-Write-Output "JIT Python/C Compilation *made by AmmarTM* handled by : "
+cd ../RGBDAcquisition
+REPO="$( pwd )"
+cd "$DIR"
+
+echo "JIT Python/C Compilation *made by AmmarTM* handled by : "
 gcc --version
 
 #in case of a build after ./batherFiles.sh
-# $BVHTESTER_DIR="opengl_acquisition_shared_library/opengl_depth_and_color_renderer/src/Applications/BVHTester"
-# $AMMATRIX_DIRECTORY="tools/AmMatrix"
-# $MODELLOADER_DIRECTORY="opengl_acquisition_shared_library/opengl_depth_and_color_renderer/src/Library/ModelLoader"
-# $BVH_DIRECTORY="opengl_acquisition_shared_library/opengl_depth_and_color_renderer/src/Library/MotionCaptureLoader"
-# $INPUTPARSER_DIRECTORY="opengl_acquisition_shared_library/opengl_depth_and_color_renderer/src/Library/TrajectoryParser"
+BVHTESTER_DIR="."
+AMMATRIX_DIRECTORY="$REPO/tools/AmMatrix"
+PTHREAD_WORKER_DIRECTORY="$REPO/tools/PThreadWorkerPool"
+MODELLOADER_DIRECTORY="$REPO/opengl_acquisition_shared_library/opengl_depth_and_color_renderer/src/Library/ModelLoader"
+BVH_DIRECTORY="$REPO/opengl_acquisition_shared_library/opengl_depth_and_color_renderer/src/Library/MotionCaptureLoader"
+INPUTPARSER_DIRECTORY="$REPO/opengl_acquisition_shared_library/opengl_depth_and_color_renderer/src/Library/TrajectoryParser"
+WIN_UTILS_DIRECTORY="$REPO/opengl_acquisition_shared_library/opengl_depth_and_color_renderer/src/Library/WinUtils"
 
-$BVHTESTER_DIR="."
-$AMMATRIX_DIRECTORY="../../../../../tools/AmMatrix"
-$MODELLOADER_DIRECTORY="../../Library/ModelLoader"
-$BVH_DIRECTORY="../../Library/MotionCaptureLoader"
-$INPUTPARSER_DIRECTORY="../../Library/TrajectoryParser"
 
-$SOURCE="
+# BVHTESTER_DIR="."
+# AMMATRIX_DIRECTORY="../../../../../tools/AmMatrix"
+# MODELLOADER_DIRECTORY="../../Library/ModelLoader"
+# BVH_DIRECTORY="../../Library/MotionCaptureLoader"
+# INPUTPARSER_DIRECTORY="../../Library/TrajectoryParser"
+
+SOURCE="
+$PTHREAD_WORKER_DIRECTORY/pthreadWorkerPool.h
 $AMMATRIX_DIRECTORY/matrix3x3Tools.c
 $AMMATRIX_DIRECTORY/matrix3x3Tools.h
 $AMMATRIX_DIRECTORY/matrix4x4Tools.c
@@ -112,24 +120,25 @@ $BVHTESTER_DIR/bvhConverter.c
 
 #$BVHTESTER_DIR/main.c <- This used to be in the same binary with the BVHTester utility, now its split..
 
-$cpuInfo = Get-CimInstance -ClassName Win32_Processor
-if ($cpuInfo.Name -notcontains "Intel")
-{
- Write-Output "No intel optimizations available"
- $EXTRA_FLAGS=" "
-}
+INTEL_OPTIMIZATIONS=`powershell cat /proc/cpuinfo | grep sse3`
+
+if [ -z "$INTEL_OPTIMIZATIONS" ] ; then
+ echo "No intel optimizations available"
+ EXTRA_FLAGS=" "
 else
-{
- Write-Output "Intel Optimizations available and will be used"
- $EXTRA_FLAGS="-DINTEL_OPTIMIZATIONS"
-}
+ echo "Intel Optimizations available and will be used"
+ EXTRA_FLAGS="-DINTEL_OPTIMIZATIONS"
+fi
  
 #-O3 causes buffer overflow ? 
-gcc -shared -o libBVHConverter.so -fPIC $EXTRA_FLAGS -march=native -mtune=native -lm -DBVH_USE_AS_A_LIBRARY $SOURCE
+gcc -shared -o libBVHConverter.so -fPIC $EXTRA_FLAGS -march=native -mtune=native -lm -DBVH_USE_AS_A_LIBRARY $SOURCE -include $WIN_UTILS_DIRECTORY/winUtils.c
 
 
-if($?)
-{
-    Write-Output "Error: Unable to compile BVH library, This probably means that you have library dependencies missing ..."
-    Write-Output "Try : sudo apt install build-essential libglew-dev freeglut3-dev"
-}
+if [ $? -ne 0 ]; then
+    echo "Error: Unable to compile BVH library, This probably means that you have library dependencies missing ..."
+    echo "Try : sudo apt install build-essential libglew-dev freeglut3-dev"
+fi
+
+
+
+exit 0

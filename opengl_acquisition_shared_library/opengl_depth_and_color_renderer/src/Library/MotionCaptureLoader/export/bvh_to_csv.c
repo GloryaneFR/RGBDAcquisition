@@ -11,7 +11,9 @@
 #include "../edit/bvh_remapangles.h"
 #include "../edit/bvh_cut_paste.h"
 
+#if defined (_WIN32)
 #define ssize_t ptrdiff_t
+#endif
 #define block_size 1024
 
 #define DUMP_SEPERATED_POS_ROT 0

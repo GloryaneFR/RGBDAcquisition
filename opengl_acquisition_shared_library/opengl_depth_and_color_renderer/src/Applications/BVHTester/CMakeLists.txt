@@ -40,7 +40,7 @@ add_executable(
                BVHTester 
                main.c
                $<$<PLATFORM_ID:Windows>: #https://stackoverflow.com/questions/67404662/how-to-make-cmakelists-txt-to-include-some-c-and-h-files-only-for-one-os
-                    ../../Library/WinGetFile/winUtils.c
+                    ../../Library/WinUtils/winUtils.c
                >
                ../../Library/MotionCaptureLoader/bvh_loader.c
                ../../Library/MotionCaptureLoader/calculate/bvh_transform.c 

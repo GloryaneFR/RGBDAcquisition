@@ -8,7 +8,9 @@
 #include <string.h>
 #include <math.h>
 
+#if defined (_WIN32)
 #define ssize_t ptrdiff_t
+#endif
 
 #define NORMAL   "\033[0m"
 #define BLACK   "\033[30m"      /* Black */

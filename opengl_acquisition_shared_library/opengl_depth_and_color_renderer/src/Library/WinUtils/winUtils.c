@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#if defined ( _MSC_VER )
+#if defined (_WIN32)
 #include <windows.h>    /* WinAPI */
 
 /* Windows sleep in 100ns units */

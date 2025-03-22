@@ -29,12 +29,12 @@
 #include "../../../../../../tools/PThreadWorkerPool/pthreadWorkerPool.h"
 
 
-#if defined ( _MSC_VER )
+#if defined (_WIN32)
 #include<windows.h>
 #include<io.h>
 #define ftruncate _chsize_s
 #define sleep Sleep
-#elif defined( __GNUC__ )
+#else
 #include <sys/time.h>
 #include <unistd.h>
 #endif

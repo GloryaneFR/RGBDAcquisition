@@ -12,9 +12,9 @@ extern "C"
 {
 #endif
 
-#if defined ( _MSC_VER )
+#if defined ( _WIN32 )
 #define PURE_ALIGN_16  __declspec(align(16))
-#elif defined( __GNUC__ )
+#else
 #define  PURE_ALIGN_16 __attribute__((aligned(16))) 
 #endif
 

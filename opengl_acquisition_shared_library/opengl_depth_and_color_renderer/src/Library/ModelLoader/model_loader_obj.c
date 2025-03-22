@@ -1,8 +1,3 @@
-#if defined ( _MSC_VER )
-#include <Windows.h>
-#include <GL/gl.h>
-#endif
-
 #include "model_loader_obj.h"
 
 #include <stdio.h>

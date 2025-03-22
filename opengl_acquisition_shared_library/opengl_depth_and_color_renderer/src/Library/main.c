@@ -7,11 +7,11 @@
 #include <string.h>
 #include <math.h>
 
-#if defined ( _MSC_VER )
+#if defined ( _WIN32 )
 #include <windows.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
-#elif defined( __GNUC__ )
+#else
 #include <GL/glx.h>    /* this includes the necessary X headers */
 #include <GL/gl.h>
 #include <GL/glu.h>
