@@ -31,10 +31,11 @@ IF( ENABLE_SHADERS )
  add_definitions(-DUSE_GLEW)
 ENDIF( ENABLE_SHADERS )
 
-
+if (MSVC)
 # Include and link directories for pthread (in ./libs folder)
 include_directories("../../../../../../pthreads4w/PTHREADS-BUILT/x86_64/Debug/include")
 link_directories("../../../../../../pthreads4w/PTHREADS-BUILT/x86_64/Debug/lib")
+endif (MSVC)
 
 add_executable( 
                BVHTester 
